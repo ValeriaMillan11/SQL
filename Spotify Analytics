@@ -1,0 +1,55 @@
+--What is the average danceability by artist and track?
+SELECT artist_name, track_name, AVG(danceability) AS avg_danceability
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name, track_name
+ORDER BY avg_danceability DESC;
+
+--Who are the top 10 artists based on popularity?
+SELECT artist_name, AVG(popularity) AS avg_popularity
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY avg_popularity DESC
+LIMIT 10;
+
+-- What artist released the longest song?
+SELECT artist_name, track_name, duration_ms
+FROM BIT_DB.Spotifydata
+ORDER BY duration_ms DESC
+LIMIT 1;
+
+--What's the average danceability for the 10 most popular songs?
+SELECT AVG(danceability) AS avg_danceability
+FROM (
+    SELECT danceability
+    FROM BIT_DB.Spotifydata
+    ORDER BY popularity DESC
+    LIMIT 10
+) AS top_10_songs;
+
+--Which song has the highest energy?
+SELECT artist_name, track_name, energy
+FROM BIT_DB.Spotifydata
+ORDER BY energy DESC
+LIMIT 1;
+
+--What is the average loudness of songs grouped by key?
+SELECT song_key, AVG(loudness) AS avg_loudness
+FROM BIT_DB.Spotifydata
+GROUP BY song_key
+ORDER BY avg_loudness DESC;
+
+--Which artist has the most songs in the dataset?
+SELECT artist_name, COUNT(track_name) AS song_count
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY song_count DESC
+LIMIT 1;
+
+--What is the average tempo of the songs that have the highest valence (happiest songs)?
+SELECT AVG(tempo) AS avg_tempo
+FROM (
+    SELECT tempo
+    FROM BIT_DB.Spotifydata
+    ORDER BY valence DESC
+    LIMIT 10
+) AS top_valence_songs;
