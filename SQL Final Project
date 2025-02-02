@@ -1,3 +1,5 @@
+This is a final project I did that involves answering the questions using SQL.
+
 --Show Customers (their full names, customer ID, and country) who are not in the US.
 SELECT FirstName, LastName, CustomerId, Country 
 FROM chinook.customers 
@@ -5,7 +7,7 @@ WHERE Country != "USA";
 
 --Show only the Customers from Brazil.
 SELECT * FROM chinook.customers 
-WHERE Country = "Brazil" ;
+WHERE Country = "Brazil";
 
 --Find the Invoices of customers who are from Brazil. 
 SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.BillingCountry, inv.InvoiceDate
